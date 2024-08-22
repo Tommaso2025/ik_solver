@@ -48,17 +48,13 @@ int main(int argc, char** argv)
     } else {
     RCLCPP_ERROR(node->get_logger(), "Failed to get timeout parameter");
     }
-    /*
-    RCLCPP_INFO(node->get_logger(), "Kinematics solver: %s", kinematics_solver.c_str());
-    RCLCPP_INFO(node->get_logger(), "Search resolution: %f", search_resolution);
-    RCLCPP_INFO(node->get_logger(), "Timeout: %f", timeout);
-    */
+    
     // Initialize the KDL IK solver plugin with all required parameters
     kdl_kinematics::KDLKinematics ik_solver;
 
-    std::string group_name = "panda_arm"; // Replace with your group name
-    std::string base_frame = "base_link";   // Replace with your robot's base frame
-    std::vector<std::string> tip_frames = {"tool0"};  // Replace with your robot's end-effector frame(s)
+    std::string group_name = "panda_arm"; 
+    std::string base_frame = "base_link";   
+    std::vector<std::string> tip_frames = {"tool0"};
     double search_discretization = 0.01;
 
     if (!ik_solver.initialize(node, *robot_model, group_name, base_frame, tip_frames, search_discretization))
@@ -89,16 +85,14 @@ int main(int argc, char** argv)
     // Optional options (can be customized as needed)
     kinematics::KinematicsQueryOptions options;
 
-    //double timeout = 0.1;  // Timeout in seconds
-
-    // Call the IK solver with all required parameters
+   // Call the IK solver with all required parameters
     bool found_ik = ik_solver.searchPositionIK(
-        target_pose.pose,              // Target pose
-        initial_guess,                 // Initial guess for joint values
-        timeout,                       // Timeout
-        joint_angles,                  // Output solution (joint angles)
-        error_code,                    // Error code
-        options                        // Kinematics query options
+        target_pose.pose,              
+        initial_guess,                 
+        timeout,                       
+        joint_angles,                  
+        error_code,                    
+        options                        
     );
 
     if (found_ik && error_code.val == moveit_msgs::msg::MoveItErrorCodes::SUCCESS)
