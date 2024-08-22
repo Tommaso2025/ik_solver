@@ -65,41 +65,6 @@ def generate_launch_description():
     
 if __name__ == '__main__':
     generate_launch_description()
-"""
 
-import os
-from launch import LaunchDescription
-from launch_ros.actions import Node
-from moveit_configs_utils import MoveItConfigsBuilder
-
-def generate_launch_description():
-    # Create MoveIt config using MoveItConfigsBuilder
-    moveit_config = (
-        MoveItConfigsBuilder("panda", package_name="panda_moveit_config")
-        .robot_description(file_path="config/panda.urdf.xacro")
-        .robot_description_semantic(file_path="config/panda.srdf")
-        .robot_description_kinematics(file_path="config/kinematics.yaml")
-        #.planning_scene_monitor(publish_robot_description=True, publish_robot_description_semantic=True)
-        .to_moveit_configs()
-    )
-
-    # Define the node that will use the MoveIt configuration
-    ik_test_node = Node(
-        package='ik_test_package',
-        executable='ik_test_node_2',
-        name='ik_test_node_2',
-        output='screen',
-        parameters=[
-            moveit_config.robot_description,  # URDF
-            moveit_config.robot_description_semantic,  # SRDF
-            moveit_config.robot_description_kinematics  # Kinematics YAML
-        ]
-    )
-
-    return LaunchDescription([ik_test_node])
-
-if __name__ == '__main__':
-    generate_launch_description()
-"""
 
 
