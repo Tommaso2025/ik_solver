@@ -19,26 +19,12 @@ find_package(kdl_parser REQUIRED)
 find_package(kdl_kinematics REQUIRED)
 
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
 
 # Include directories
 include_directories(
   include
   ${kdl_kinematics_INCLUDE_DIRS}
 )
-
-#add_executable(ik_test_node src/ik_test_node.cpp)
-#ament_target_dependencies(ik_test_node
-#  rclcpp
-#  xacro
-#  moveit_core
-#  moveit_ros_planning_interface
-#  pluginlib
-#  kdl_parser
-#  kdl_kinematics
-#)
 
 add_executable(ik_test_node_2 src/ik_test_node_2.cpp)
 ament_target_dependencies(ik_test_node_2
@@ -52,10 +38,6 @@ ament_target_dependencies(ik_test_node_2
   kdl_parser
   kdl_kinematics
 )
-
-#install(TARGETS ik_test_node
-#  DESTINATION lib/${PROJECT_NAME}
-#  )
 
 install(TARGETS ik_test_node_2
   DESTINATION lib/${PROJECT_NAME}
