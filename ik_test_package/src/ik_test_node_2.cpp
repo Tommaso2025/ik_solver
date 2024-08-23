@@ -53,8 +53,8 @@ int main(int argc, char** argv)
     kdl_kinematics::KDLKinematics ik_solver;
 
     std::string group_name = "panda_arm"; 
-    std::string base_frame = "base_link";   
-    std::vector<std::string> tip_frames = {"tool0"};
+    std::string base_frame = "panda_link0";   
+    std::vector<std::string> tip_frames = {"panda_hand"};
     double search_discretization = 0.01;
 
     if (!ik_solver.initialize(node, *robot_model, group_name, base_frame, tip_frames, search_discretization))
